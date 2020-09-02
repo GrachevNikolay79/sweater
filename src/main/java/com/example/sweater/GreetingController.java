@@ -1,13 +1,19 @@
 package com.example.sweater;
 
+import com.example.sweater.domain.Message;
+import com.example.sweater.repos.MessageRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
 @Controller
 public class GreetingController {
+    @Autowired
+    private MessageRepo messagesRepo;
 
     @GetMapping("/greeting")
     public String greeting(
@@ -20,7 +26,11 @@ public class GreetingController {
 
     @GetMapping
     public String main(Map<String, Object> model){
-        model.put("some", "Hello!!! main page");
+        Iterable<Message> messages = messagesRepo.findAll();
+        model.put("messages", messages);
         return "main";
     }
+
+    @PostMapping
+    https://youtu.be/nyFLX3q3poY?list=PLU2ftbIeotGpAYRP9Iv2KLIwK36-o_qYk&t=485
 }
