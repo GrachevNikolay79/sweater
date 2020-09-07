@@ -13,17 +13,25 @@ public class Message {
     private String text;
     private String tag;
 
-    public Integer getId() {
-        return id;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
 
     public Message(){
-
     }
 
-    public Message(String text, String tag) {
+    public Message(String text, String tag, User user) {
+        this.author = user;
         this.text = text;
         this.tag = tag;
+    }
+
+    public String getAuthorName(){
+        return author != null ? author.getUsername() : "<none>";
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getText() {
@@ -40,5 +48,13 @@ public class Message {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }
