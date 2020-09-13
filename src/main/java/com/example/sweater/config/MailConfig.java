@@ -22,7 +22,7 @@ public class MailConfig {
     private String protocol;
     @Value("${mail.debug}")
     private String debug;
-    @Value("${mail.smtp.starttls.enable}")
+    @Value("${spring.mail.properties.mail.smtp.starttls.enable}")
     private String starttls;
     @Value("${spring.mail.properties.mail.smtp.auth}")
     private String smtpauth;
